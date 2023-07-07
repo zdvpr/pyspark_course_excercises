@@ -1,0 +1,22 @@
+checks for comments:
+  - schema:
+      warn:
+        when required column missing: ["video_id", "comment_text", "likes", "replies"]
+  - invalid_count(video_id):
+      valid regex: [\w\d\-\_]+
+      warn: when > 0
+  - invalid_count(video_id):
+      valid length: 30
+      warn: when > 0
+  - invalid_count(likes):
+      valid min: 0
+      warn: when > 0
+  - invalid_count(replies):
+      valid min: 0
+      warn: when > 0
+  - invalid_count(likes):
+      valid min: 1
+      warn: when < 1
+  - valid_count(replies):
+      valid min: 1
+      warn: when < 1

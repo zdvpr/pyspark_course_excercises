@@ -32,6 +32,31 @@ def test_videos_source(spark):
 
     scan.assert_no_checks_warn_or_fail()
 
+
+def test_comments_source(spark):
+    videos_df = spark.read.option('header', 'true').option("inferSchema", "true").csv('datasets/UScomments.csv')
+    videos_df.createOrReplaceTempView('comments')
+
+    scan = build_scan("comments_source_data_quality_test", spark)
+    scan.add_sodacl_yaml_file("data_quality/comments_checks.yml")
+
+    scan.execute()
+
+    scan.assert_no_checks_warn_or_fail()
+
+def test_comments_source(spark):
+    videos_df = spark.read.option('header', 'true').option("inferSchema", "true").csv('datasets/UScomments.csv')
+    videos_df.createOrReplaceTempView('comments')
+
+    scan = build_scan("comments_source_data_quality_test", spark)
+    scan.add_sodacl_yaml_file("data_quality/comments_checks.yml")
+
+    scan.execute()
+
+    scan.assert_no_checks_warn_or_fail()
+
+# Ниже аналогичный test_comments_source вариант проверки качества данных только без библиотеки SODA
+
 comments_schema = StructType([ \
     StructField("video_id", StringType(), True), \
     StructField("comment_text", StringType(), True), \
