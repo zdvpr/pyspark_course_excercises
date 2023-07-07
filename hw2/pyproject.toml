@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "hw2"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pyspark = "^3.4.0"
+pandas = "^2.0.3"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.1"
+soda-core-spark-df = "^3.0.39"
+pandas = "^2.0.3"
+chispa = "^0.9.2"
+pyarrow= "1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
